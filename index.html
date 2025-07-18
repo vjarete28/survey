@@ -840,17 +840,28 @@
         return cleanObject(data);
       }
       
-      document.getElementById('survey-form').onsubmit = e => {
-        e.preventDefault();
-        if (validatePage(currentPage, true)) {
-          const payload = formToObj(e.target);
-          payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
-          
-          console.log('Form submitted:', payload);
-          alert('Thanks! Responses submitted.');
-        }
-      };
-
+      document.getElementById('survey-form').onsubmit = async e => {
+  e.preventDefault();
+  if (validatePage(currentPage, true)) {
+    const payload = formToObj(e.target);
+    payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+    try {
+      const response = await fetch('https://survey-webhook.<your-account>.workers.dev/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (response.ok) {
+        alert('Thanks! Responses submitted to GitHub.');
+      } else {
+        alert('Error submitting responses.');
+      }
+    } catch (err) {
+      console.error('Submission failed:', err);
+      alert('Error submitting responses.');
+    }
+  }
+};
       // Initial setup
       showPage(currentPage);
     </script>
