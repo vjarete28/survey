@@ -254,7 +254,7 @@
           fields: [
             { type: "number", id: "age", label: "Age", placeholder: "Enter your age", min: 1, required: true },
             { type: "select", id: "gender", label: "Gender", options: ["", "Female", "Male", "Non-binary", "Prefer not to say", "Other"], required: true },
-            { type: "select", id: "education", label: "Highest level of education completed", options: ["", "Elementary School", "Middle School", "High School", "Some College", "Associates", "Bachelors", "Masters", "PhD/MD", "Postdoctoral"], required: true },
+            { type: "select", id: "education", label: "Highest level of education completed", options: ["", "No formal education", "Elementary School", "Middle School", "High School", "Some College", "Associates", "Bachelors", "Masters", "PhD/MD", "Postdoctoral"], required: true },
             { type: "text", id: "field", label: "Academic or career field", placeholder: "e.g., Engineering", required: true },
             { type: "textarea", id: "language", label: "Add your languages (indicate whether you are comfortable speaking, reading, listening, writing for each)", placeholder: "e.g., English (speaking, reading, listening, writing), Spanish (reading, listening)", required: true },
             { type: "select", id: "country", label: "Country", options: ["", "United States", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", " Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"], required: true },
@@ -372,13 +372,13 @@
           title: "Reading Experience & Engagement",
           instructions: "Rate your experience and engagement with the text you just read.",
           fields: [
-            { type: "range", id: "auth1", label: "The writing felt generic and didn’t show a personal point of view.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "auth2", label: "The writing reflected a perspective shaped by personal experiences.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "auth3", label: "The emotional tone of the story felt authentic to the author’s perspective.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "auth4", label: "The story felt more like a collection of words than a meaningful message.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "auth5", label: "The writing conveyed a sense of emotional depth.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "emo1", label: "How did this story make you feel emotionally?", min: 1, max: 5, value: 3, labels: { "1": "Very negative", "5": "Very positive" }, required: true },
-            { type: "range", id: "emo2", label: "How activated or stimulated did you feel while reading?", min: 1, max: 5, value: 3, labels: { "1": "Very calm/bored", "5": "Very alert/intense" }, required: true },
+            { type: "range", id: "auth1", label: "The writing felt generic and didn’t show a personal point of view.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "auth2", label: "The writing reflected a perspective shaped by personal experiences.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "auth3", label: "The emotional tone of the story felt authentic to the author’s perspective.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "auth4", label: "The story felt more like a collection of words than a meaningful message.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "auth5", label: "The writing conveyed a sense of emotional depth.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "emo1", label: "How did this story make you feel emotionally?", min: 1, max: 7, value: 4, labels: { "1": "Very negative", "5": "Very positive" }, required: true },
+            { type: "range", id: "emo2", label: "How activated or stimulated did you feel while reading?", min: 1, max: 7, value: 4, labels: { "1": "Very calm/bored", "5": "Very alert/intense" }, required: true },
             { type: "checkboxes", id: "emo3", label: "What emotions did you experience while reading?", options: [
                 { label: "Curiosity", value: "curiosity" },
                 { label: "Suspense", value: "suspense" },
@@ -655,10 +655,10 @@
           title: "Final Questions",
           instructions: "Please rate how much each statement describes you.",
           fields: [
-            { type: "range", id: "nfc1", label: "I prefer complex to simple problems.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "nfc2", label: "I really enjoy a task that involves coming up with new solutions to problems.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "nfc3", label: "Thinking is not my idea of fun.", min: 1, max: 5, value: 3, required: true },
-            { type: "range", id: "nfc4", label: "I only think as hard as I have to.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "nfc1", label: "I prefer complex to simple problems.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "nfc2", label: "I really enjoy a task that involves coming up with new solutions to problems.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "nfc3", label: "Thinking is not my idea of fun.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "nfc4", label: "I only think as hard as I have to.", min: 1, max: 7, value: 4, required: true },
             { type: "select", id: "read_before", label: "Have you read this text before?", options: ["", "Yes", "No", "Unsure"], required: true }
           ]
         },
