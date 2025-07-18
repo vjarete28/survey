@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Reading Response Survey</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <style>
       body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(205deg, #FFA6B2 0%, #BABBFF 100%);
         min-height: 100vh;
-        padding: 1rem;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 0rem  1rem 0rem 1rem;
+        font-family: 'Sora', sans-serif;
       }
       .container {
-        background: rgba(255, 255, 255, 0.98);
+        background: #DDE4ED;
         backdrop-filter: blur(12px);
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-radius: 0px 0px 15px 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.30);
         padding: 2rem;
         max-width: 900px;
-        position: relative;
+        position: sticky;
+        top: 0; /* Stick to the top of the viewport */
+        z-index: 10; /* Ensure it stays above other content */
       }
       h1 {
         color: #2c3e50;
@@ -31,8 +37,8 @@
       h2 {
         color: #34495e;
         font-weight: 600;
-        border-bottom: 3px solid #3498db;
-        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #FFA6B2;
+        padding: 1rem;
         margin-bottom: 1.5rem;
         position: sticky;
         top: 0;
@@ -54,7 +60,7 @@
       }
       .excerpt {
         background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-        border-left: 4px solid #3498db;
+        border-left: 4px solid #FFA3B7;
         padding: 1.5rem;
         margin: 1.5rem 0;
         border-radius: 10px;
@@ -106,7 +112,7 @@
         height: 200%;
       }
       .btn-primary {
-        background: linear-gradient(45deg, #3498db, #2980b9);
+        background: linear-gradient(45deg, #FF5761, #ABA3FF);
       }
       .btn-primary:hover {
         transform: translateY(-2px);
@@ -133,8 +139,8 @@
         background: #fff;
       }
       .form-control:focus, .form-select:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        border-color: #FFBDCF;
+        box-shadow: 0 0 0 0.2rem rgba(255, 163, 183, 0.25);
       }
       .form-range {
         height: 6px;
@@ -174,7 +180,7 @@
         background: #ecf0f1;
       }
       .progress-bar {
-        background: linear-gradient(45deg, #3498db, #2980b9);
+        background: linear-gradient(75deg, #FFA6B2, #D1CFFF);
         transition: width 0.3s ease;
       }
       .instructions {
@@ -223,7 +229,6 @@
           <button type="submit" id="submitBtn" class="btn btn-success" style="display:none;">Submit</button>
         </div>
       </form>
-      <div class="timer" id="timer">Time elapsed: 0s</div>
     </div>
 
     <script>
@@ -231,7 +236,7 @@
       const pageConfig = [
         {
           title: "Welcome",
-          instructions: "introductory text",
+          instructions: "For our research, we're studying how people engage with different types of writing. This quick survey will ask you about your reading experience with a literary excerpt and your thoughts.It should take approximately 10-15 min. The data you provide will help us understand how we perceive written works. The responses will be anonymous so please try to be as honest and thoughful as you can. Thank you for your participation!",
           fields: []
         },
         {
@@ -243,7 +248,7 @@
             { type: "select", id: "education", label: "Highest level of education completed", options: ["", "Elementary School", "Middle School", "High School", "Some College", "Associates", "Bachelors", "Masters", "PhD/MD", "Postdoctoral"], required: true },
             { type: "text", id: "field", label: "Academic or career field", placeholder: "e.g., Engineering", required: true },
             { type: "textarea", id: "language", label: "Add your languages (indicate whether you are comfortable speaking, reading, listening, writing for each)", placeholder: "e.g., English (speaking, reading, listening, writing), Spanish (reading, listening)", required: true },
-            { type: "select", id: "country", label: "Country", options: ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"], required: true },
+            { type: "select", id: "country", label: "Country", options: ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", " Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"], required: true },
             { type: "select", id: "reading_freq", label: "How often do you read?", options: ["", "Daily", "Weekly", "Monthly", "Rarely", "Never"], required: true }
           ]
         },
@@ -253,7 +258,50 @@
           customContent: true,
           content: `
             <div class="excerpt" id="excerpt-human" style="display: none;">
-              <p>Literary Text 1</p>
+              <p>
+              “The Open Window”
+                by a Human Author
+            
+                <p>"My aunt will be down presently, Mr. Nuttel," said a very self-possessed young lady of fifteen; "in the meantime you must try and put up with me."</p>
+                
+                Framton Nuttel endeavoured to say the correct something which should duly flatter the niece of the moment without unduly discounting the aunt that was to come. Privately he doubted more than ever…
+                
+                Framton wondered whether Mrs. Sappleton, the lady to whom he was presenting one of the letters of introduction came into the nice division.
+
+                "Do you know many of the people round here?" asked the niece, when she judged that they had had sufficient silent communion.
+                
+                "Hardly a soul," said Framton. "My sister was staying here, at the rectory, you know, some four years ago, and she gave me letters of introduction to some of the people here."
+                
+                He made the last statement in a tone of distinct regret.
+                
+                "Then you know practically nothing about my aunt?" pursued the self-possessed young lady.
+                
+                "Only her name and address," admitted the caller. He was wondering whether Mrs. Sappleton was in the married or widowed state. An undefinable something about the room seemed to suggest masculine habitation.
+
+                "Her great tragedy happened just three years ago," said the child; "that would be since your sister's time."
+                
+                "Her tragedy?" asked Framton; somehow in this restful country spot tragedies seemed out of place.
+                
+                "You may wonder why we keep that window wide open on an October afternoon," said the niece, indicating a large French window that opened on to a lawn.
+                
+                "It is quite warm for the time of the year," said Framton; "but has that window got anything to do with the tragedy?"
+                
+                "Out through that window, three years ago to a day, her husband and her two young brothers went off for their day's shooting. They never came back. In crossing the moor to their favourite snipe-shooting ground they were all three engulfed in a treacherous piece of bog. It had been that dreadful wet summer, you know, and places that were safe in other years gave way suddenly without warning. Their bodies were never recovered. That was the dreadful part of it." …
+                
+                She broke off with a little shudder. It was a relief to Framton when the aunt bustled into the room with a whirl of apologies for being late in making her appearance.
+                
+                "I hope Vera has been amusing you?" she said.
+                
+                "She has been very interesting," said Framton.
+
+                "I hope you don't mind the open window," said Mrs. Sappleton briskly; "my husband and brothers will be home directly from shooting, and they always come in this way. They've been out for snipe in the marshes today, so they'll make a fine mess over my poor carpets. So like you menfolk, isn't it?"
+                
+                She rattled on cheerfully about the shooting and the scarcity of birds, and the prospects for duck in the winter. To Framton it was all purely horrible. He made a desperate but only partially successful effort to turn the talk on to a less ghastly topic, he was conscious that his hostess was giving him only a fragment of her attention, and her eyes were constantly straying past him to the open window and the lawn beyond. It was certainly an unfortunate coincidence that he should have paid his visit on this tragic anniversary…
+                
+                "Here they are at last!" she cried. "Just in time for tea, and don't they look as if they were muddy up to the eyes!"
+                
+                Framton shivered slightly and turned towards the niece with a look intended to convey sympathetic comprehension. The child was staring out through the open window with a dazed horror in her eyes. In a chill shock of nameless fear Framton swung round in his seat and looked in the same direction…
+             </p>
             </div>
             <div class="excerpt" id="excerpt-ai" style="display: none;">
               <p>Literary Text 2</p>
@@ -270,6 +318,25 @@
           title: "Reading Experience & Engagement",
           instructions: "Rate your experience and engagement with the text you just read.",
           fields: [
+            { type: "range", id: "auth1", label: "The writing felt generic and didn’t show a personal point of view.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "auth2", label: "The writing reflected a perspective shaped by personal experiences.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "auth3", label: "The emotional tone of the story felt authentic to the author’s perspective.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "auth4", label: "The story felt more like a collection of words than a meaningful message.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "auth5", label: "The writing conveyed a sense of emotional depth.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "emo1", label: "How did this story make you feel emotionally?", min: 1, max: 5, value: 3, labels: { "1": "Very negative", "5": "Very positive" }, required: true },
+            { type: "range", id: "emo2", label: "How activated or stimulated did you feel while reading?", min: 1, max: 5, value: 3, labels: { "1": "Very calm/bored", "5": "Very alert/intense" }, required: true },
+            { type: "checkboxes", id: "emo3", label: "What emotions did you experience while reading?", options: [
+                { label: "Curiosity", value: "curiosity" },
+                { label: "Suspense", value: "suspense" },
+                { label: "Amusement", value: "amusement" },
+                { label: "Surprise", value: "surprise" },
+                { label: "Discomfort", value: "discomfort" },
+                { label: "Sadness", value: "sadness" },
+                { label: "Anxiety", value: "anxiety" },
+                { label: "Disappointment", value: "disappointment" },
+                { label: "None of the above", value: "none" },
+                { label: "Other", value: "other", text: true }
+              ], required: true },
             { type: "range", id: "exp1", label: "I felt a pull to keep reading…", min: 1, max: 7, value: 4, required: true },
             { type: "range", id: "exp2", label: "The events and characters felt real to me.", min: 1, max: 7, value: 4, required: true },
             { type: "range", id: "exp3", label: "I felt a sense of connection to the characters.", min: 1, max: 7, value: 4, required: true },
@@ -292,9 +359,9 @@
           ]
         },
         {
-          title: "",
+          title: "Perceived Source",
           titleId: "authorship-title",
-          instructions: "",
+          instructions: "Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.",
           customContent: true,
           content: `
             <div id="authorship-info" style="display: none;">
@@ -509,7 +576,9 @@
             { type: "range", id: "trust2", label: "Do you believe AI can express empathy?", min: 1, max: 7, value: 4, required: true },
             { type: "range", id: "trust3", label: "Do you feel a personal connection to AI text?", min: 1, max: 7, value: 4, required: true },
             { type: "range", id: "trust4", label: "How comfortable are you reading AI content?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust5", label: "Can AI produce truly original writing?", min: 1, max: 7, value: 4, required: true }
+            { type: "range", id: "trust5", label: "Can AI produce truly original writing?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust6", label: "AI-generated content is generally trustworthy.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust7", label: "I feel uneasy when I can’t tell if something was written by AI.", min: 1, max: 7, value: 4, required: true }
           ]
         },
         {
@@ -518,29 +587,30 @@
           fields: [
             { type: "select", id: "ai_use_freq", label: "How often do you use AI language models?", options: ["", "Daily", "Weekly", "Monthly", "Rarely", "Never"], required: true },
             { type: "checkbox-group", id: "ai_uses", label: "What do you use AI for? (check all):", options: [
-              "Writing", "Summarizing information", "Brainstorming ideas", "Research", "Coding", "Translation", "Personal learning", "I do not use AI language models"
-            ]},
+                "Writing", "Summarizing information", "Brainstorming ideas", "Research", "Coding", "Translation", "Personal learning", "I do not use AI language models"
+              ], required: true },
             { type: "text", id: "ai_use_other", label: "Other AI uses (if any):", placeholder: "Specify other uses..." },
             { type: "range", id: "ai_encounter", label: "How often do you encounter AI-generated text?", min: 1, max: 7, value: 4, required: true },
             { type: "range", id: "ai_capable", label: "How capable is AI of producing high-quality writing?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "ai_concern", label: "How concerned are you about ethical use of AI text?", min: 1, max: 7, value: 4, required: true }
+            { type: "range", id: "ai_concern", label: "How concerned are you about ethical use of AI text?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "ai_dependence", label: "I rely on AI to help me with complex tasks.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "ai_control", label: "I believe humans should always have final say over AI-generated writing.", min: 1, max: 7, value: 4, required: true }
           ]
         },
         {
-          title: "Final Question",
-          instructions: "One last question about the excerpt.",
+          title: "Final Questions",
+          instructions: "Please rate how much each statement describes you.",
           fields: [
+            { type: "range", id: "nfc1", label: "I prefer complex to simple problems.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "nfc2", label: "I really enjoy a task that involves coming up with new solutions to problems.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "nfc3", label: "Thinking is not my idea of fun.", min: 1, max: 5, value: 3, required: true },
+            { type: "range", id: "nfc4", label: "I only think as hard as I have to.", min: 1, max: 5, value: 3, required: true },
             { type: "select", id: "read_before", label: "Have you read this text before?", options: ["", "Yes", "No", "Unsure"], required: true }
           ]
         },
         {
           title: "Thank you!",
-          instructions: "here is the conclusion",
           fields: [],
-          customContent: true,
-          content: `
-            <button type="button" id="copyBtn" class="btn btn-copy mt-2">Copy Conclusion Text</button>
-          `
         }
       ];
 
@@ -602,10 +672,11 @@
             break;
             
           case 'checkbox-group':
+          case 'checkboxes':
             const checkboxes = field.options.map((opt, index) => `
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="${field.id}" value="${opt}" id="${field.id}_${index}" />
-                <label class="form-check-label" for="${field.id}_${index}">${opt}</label>
+                <input class="form-check-input" type="checkbox" name="${field.id}" value="${opt.value || opt}" id="${field.id}_${index}" />
+                <label class="form-check-label" for="${field.id}_${index}">${opt.label || opt}</label>
               </div>
             `).join('');
             div.innerHTML = `
@@ -634,7 +705,7 @@
           if (page.titleId) title.id = page.titleId;
           pageDiv.appendChild(title);
           
-          if (page.instructions) {
+          if (page.instructions && !page.customContent) {
             const instructions = document.createElement('div');
             instructions.className = 'instructions';
             instructions.textContent = page.instructions;
@@ -682,22 +753,22 @@
         excerptHuman.style.display = 'block';
         authorshipInfo.style.display = 'block';
         authorshipTitle.innerText = 'Effect of Authorship Information';
-        pageConfig[4].instructions = 'Please answer the following questions about the source of the text.';
+        pageConfig[5].instructions = 'Please answer the following questions about the source of the text.';
       } else if (surveyNum === '2') {
         excerptAI.style.display = 'block';
         authorshipInfo.style.display = 'block';
         authorshipTitle.innerText = 'Effect of Authorship Information';
-        pageConfig[4].instructions = 'Please answer the following questions about the source of the text.';
+        pageConfig[5].instructions = 'Please answer the following questions about the source of the text.';
       } else if (surveyNum === '3') {
         excerptAI2.style.display = 'block';
         perceivedSource.style.display = 'block';
         authorshipTitle.innerText = 'Perceived Source';
-        pageConfig[4].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
+        pageConfig[5].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
       } else if (surveyNum === '4') {
         excerptHuman2.style.display = 'block';
         perceivedSource.style.display = 'block';
         authorshipTitle.innerText = 'Perceived Source';
-        pageConfig[4].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
+        pageConfig[5].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
       }
 
       // Toggle other_emotion input based on checkbox selection
@@ -711,11 +782,46 @@
         }
       });
 
-      // Page navigation
+      // Page navigation and timing variables
       let currentPage = 1;
       const totalPages = pageConfig.length;
-      
+      let startTime = Date.now();
+      let readingPageStartTime = null;
+      let readingPageTime = null;
+      let pageStartTime = null;
+      let pageTimes = new Array(pageConfig.length).fill(0);
+      let navigationEvents = [];
+
+      // Device and browser detection
+      function getDeviceType() {
+        const ua = navigator.userAgent;
+        if (/mobile/i.test(ua)) return "mobile";
+        if (/tablet/i.test(ua)) return "tablet";
+        return "desktop";
+      }
+
+      function getBrowserType() {
+        const ua = navigator.userAgent;
+        if (/chrome/i.test(ua)) return "Chrome";
+        if (/firefox/i.test(ua)) return "Firefox";
+        if (/safari/i.test(ua)) return "Safari";
+        if (/edge/i.test(ua)) return "Edge";
+        return "Other";
+      }
+
+      // Page navigation
       const showPage = n => {
+        if (pageStartTime && currentPage <= pageTimes.length) {
+          pageTimes[currentPage - 1] = ((Date.now() - pageStartTime) / 1000).toFixed(1);
+        }
+        if (currentPage === 3 && readingPageStartTime) {
+          readingPageTime = ((Date.now() - readingPageStartTime) / 1000).toFixed(1);
+        }
+        if (n === 3) {
+          readingPageStartTime = Date.now();
+        }
+        pageStartTime = Date.now();
+
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const currentPageElement = document.querySelector(`.page[data-page="${n}"]`);
         currentPageElement.classList.add('active');
@@ -733,22 +839,20 @@
         
         // Update instructions dynamically
         const instructions = currentPageElement.querySelector('.instructions');
-        if (instructions) {
-          instructions.textContent = pageConfig[n-1].instructions || '';
+        if (instructions && pageConfig[n-1].instructions && !pageConfig[n-1].customContent) {
+          instructions.textContent = pageConfig[n-1].instructions;
         }
       };
 
       // Validate current page
       const validatePage = (pageNum, showErrors = false) => {
         const page = document.querySelector(`.page[data-page="${pageNum}"]`);
-        // Skip validation for page 1 (Welcome), page 4 (Effect of Authorship Information/Perceived Source), and last page (Thank you!)
-        if (pageNum === 1 || pageNum === 4 || pageNum === totalPages) return true;
+        if (pageNum === 1 || pageNum === 6 || pageNum === totalPages) return true;
         
         const requiredInputs = page.querySelectorAll('input[required], select[required], textarea[required]');
         let allValid = true;
         
         if (showErrors) {
-          // Reset validation states
           page.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
         }
         
@@ -758,6 +862,13 @@
             const value = parseInt(input.value);
             const min = parseInt(input.min);
             if (!input.value || isNaN(value) || value < min) {
+              isValid = false;
+            }
+          } else if (input.type === 'range') {
+            const value = parseInt(input.value);
+            const min = parseInt(input.min);
+            const max = parseInt(input.max);
+            if (!input.value || isNaN(value) || value < min || value > max) {
               isValid = false;
             }
           } else if (input.tagName === 'SELECT') {
@@ -774,31 +885,35 @@
           }
         });
         
-        // Special validation for ai_uses (checkbox group)
-        if (page.querySelector('input[name="ai_uses"]')) {
-          const checkboxes = page.querySelectorAll('input[name="ai_uses"]:checked');
-          const checkboxContainer = page.querySelector('input[name="ai_uses"]').parentElement;
+        // Validate checkbox groups
+        const checkboxGroups = page.querySelectorAll('input[type="checkbox"][name]');
+        const uniqueNames = new Set(Array.from(checkboxGroups).map(input => input.name));
+        uniqueNames.forEach(name => {
+          const checkboxes = page.querySelectorAll(`input[name="${name}"]:checked`);
+          const container = page.querySelector(`input[name="${name}"]`).parentElement;
           
           if (checkboxes.length === 0 && showErrors) {
-            checkboxContainer.classList.add('is-invalid');
+            container.classList.add('is-invalid');
             allValid = false;
           } else if (showErrors) {
-            checkboxContainer.classList.remove('is-invalid');
+            container.classList.remove('is-invalid');
           }
-        }
+        });
         
         return allValid;
       };
 
+      // Navigation event handlers
       document.getElementById('nextBtn').onclick = () => {
-        // Validate current page only when Next is clicked
         if (validatePage(currentPage, true)) {
+          navigationEvents.push({ event: "next", fromPage: currentPage, timestamp: new Date().toISOString() });
           currentPage++;
           showPage(currentPage);
         }
       };
       
       document.getElementById('prevBtn').onclick = () => {
+        navigationEvents.push({ event: "previous", fromPage: currentPage, timestamp: new Date().toISOString() });
         currentPage--;
         showPage(currentPage);
       };
@@ -817,7 +932,6 @@
       });
 
       // Timer
-      let startTime = Date.now();
       setInterval(() => {
         const sec = Math.floor((Date.now() - startTime) / 1000);
         document.getElementById('timer').innerText = `Time elapsed: ${sec}s`;
@@ -834,34 +948,68 @@
       
       function formToObj(frm) {
         const data = {};
-        new FormData(frm).forEach((v, k) => {
-          data[k] = data[k] ? [].concat(data[k], v) : v;
+        const formData = new FormData(frm);
+        
+        const checkboxGroups = new Set(
+          Array.from(frm.querySelectorAll('input[type="checkbox"]')).map(input => input.name)
+        );
+        
+        checkboxGroups.forEach(name => {
+          data[name] = [];
         });
+        
+        formData.forEach((v, k) => {
+          if (checkboxGroups.has(k)) {
+            data[k].push(v);
+          } else {
+            data[k] = data[k] ? [].concat(data[k], v) : v;
+          }
+        });
+        
+        data.readingPageTime = readingPageTime || "0";
+        data.pageTimes = pageTimes;
+        data.deviceType = getDeviceType();
+        data.browserType = getBrowserType();
+        data.navigationEvents = navigationEvents;
+        
         return cleanObject(data);
       }
       
       document.getElementById('survey-form').onsubmit = async e => {
-  e.preventDefault();
-  if (validatePage(currentPage, true)) {
-    const payload = formToObj(e.target);
-    payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
-    try {
-      const response = await fetch('https://experimentsurvey.neeljaiswal23.workers.dev/api', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (response.ok) {
-        alert('Thanks! Responses submitted to GitHub.');
-      } else {
-        alert('Error submitting responses.');
-      }
-    } catch (err) {
-      console.error('Submission failed:', err);
-      alert('Error submitting responses.');
-    }
-  }
-};
+        e.preventDefault();
+        if (validatePage(currentPage, true)) {
+          if (pageStartTime && currentPage <= pageTimes.length) {
+            pageTimes[currentPage - 1] = ((Date.now() - pageStartTime) / 1000).toFixed(1);
+          }
+          if (currentPage === 3 && readingPageStartTime) {
+            readingPageTime = ((Date.now() - readingPageStartTime) / 1000).toFixed(1);
+          }
+          const payload = formToObj(e.target);
+          payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+          payload.readingPageTime = readingPageTime || "0";
+          payload.pageTimes = pageTimes;
+          payload.deviceType = getDeviceType();
+          payload.browserType = getBrowserType();
+          payload.navigationEvents = navigationEvents;
+          payload.status = "complete";
+          try {
+            const response = await fetch('https://experimentsurvey.neeljaiswal23.workers.dev/api', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if (response.ok) {
+              alert('Thanks! Responses submitted to GitHub.');
+            } else {
+              alert('Error submitting responses.');
+            }
+          } catch (err) {
+            console.error('Submission failed:', err);
+            alert('Error submitting responses.');
+          }
+        }
+      };
+
       // Initial setup
       showPage(currentPage);
     </script>
