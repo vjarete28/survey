@@ -1010,13 +1010,15 @@
             data[k] = data[k] ? [].concat(data[k], v) : v;
           }
         });
-        
+
+        // Add survey number, timing, and device info to the payload
+        data.surveyNum = surveyNum;
         data.readingPageTime = readingPageTime || "0";
         data.pageTimes = pageTimes;
         data.deviceType = getDeviceType();
         data.browserType = getBrowserType();
         data.navigationEvents = navigationEvents;
-        
+              
         return cleanObject(data);
       }
       
