@@ -391,4 +391,468 @@
                   <span>6</span>
                   <span>7 (Very confident)</span>
                 </div>
-                <div class="invalid-feedback">Please adjust t1
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">If you considered that this excerpt might have been written by an AI, what emotions did you experience? (check at least one):</label>
+                <br />
+                ${["Curiosity", "Surprise", "Disappointment", "Amusement", "Skepticism", "Admiration", "Concern", "Annoyance", "None of the above", "Other"].map((opt, index) => `
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="ai_emotions" value="${opt}" id="ai_emotions_${index}" />
+                    <label class="form-check-label" for="ai_emotions_${index}">${opt}</label>
+                  </div>
+                `).join('')}
+                <div class="invalid-feedback" id="ai_emotions_feedback">Please select at least one emotion.</div>
+                <div class="mt-2" id="other_emotion_container" style="display: none;">
+                  <label for="other_emotion" class="form-label">Please specify other emotions:</label>
+                  <input type="text" id="other_emotion" name="other_emotion" class="form-control" placeholder="Specify other emotions..." />
+                  <div class="invalid-feedback">Please specify the other emotion.</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="origin_explanation" class="form-label">Please explain why you made your choice about the author's origin. What specific aspects of the writing (e.g., word choice, sentence structure, emotional tone, character dialogue, plot development) led you to your guess?</label>
+                <textarea id="origin_explanation" name="origin_explanation" class="form-control"></textarea>
+                <div class="invalid-feedback">Please provide an explanation.</div>
+              </div>
+              <div class="mb-3">
+                <label for="distinct_expression" class="form-label">To what extent did this text feel like it was written by an individual with a distinct, personal way of expressing themselves? <span class="form-range-value" id="distinct_expression-value">4</span></label>
+                <input type="range" id="distinct_expression" name="distinct_expression" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('distinct_expression-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label for="originality_influence" class="form-label">To what extent did the text's (lack of) originality/creativity influence your guess? <span class="form-range-value" id="originality_influence-value">4</span></label>
+                <input type="range" id="originality_influence" name="originality_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('originality_influence-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label for="emotion_nuance_influence" class="form-label">To what extent did the text's (lack of) specific human emotion/nuance influence your guess? <span class="form-range-value" id="emotion_nuance_influence-value">4</span></label>
+                <input type="range" id="emotion_nuance_influence" name="emotion_nuance_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('emotion_nuance_influence-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label for="structured_language_influence" class="form-label">To what extent did the text's (overly) structured/formulaic language influence your guess? <span class="form-range-value" id="structured_language_influence-value">4</span></label>
+                <input type="range" id="structured_language_influence" name="structured_language_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('structured_language_influence-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label for="word_choice_influence" class="form-label">To what extent did the text's (unusual/too perfect) word choice or grammar influence your guess? <span class="form-range-value" id="word_choice_influence-value">4</span></label>
+                <input type="range" id="word_choice_influence" name="word_choice_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('word_choice_influence-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+              <div class="mb-3">
+                <label for="consistency_influence" class="form-label">To what extent did the text's consistency (or lack thereof) in tone/style influence your guess? <span class="form-range-value" id="consistency_influence-value">4</span></label>
+                <input type="range" id="consistency_influence" name="consistency_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('consistency_influence-value').innerText = this.value" />
+                <div class="likert-labels">
+                  <span>1 (Not at all)</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4 (Neutral)</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7 (Very much)</span>
+                </div>
+                <div class="invalid-feedback">Please adjust the slider.</div>
+              </div>
+            </div>
+          `
+        },
+        {
+          title: "Artificial Intelligence",
+          instructions: "Share your thoughts on AI-generated text.",
+          fields: [
+            { type: "range", id: "trust1", label: "How much do you trust AI-generated text?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust2", label: "Do you believe AI can express empathy?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust3", label: "Do you feel a personal connection to AI text?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust4", label: "How comfortable are you reading AI content?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "trust5", label: "Can AI produce truly original writing?", min: 1, max: 7, value: 4, required: true }
+          ]
+        },
+        {
+          title: "Familiarity with Technology",
+          instructions: "Tell us about your experience with AI technology.",
+          fields: [
+            { type: "select", id: "ai_use_freq", label: "How often do you use AI language models?", options: ["", "Daily", "Weekly", "Monthly", "Rarely", "Never"], required: true },
+            { type: "checkbox-group", id: "ai_uses", label: "What do you use AI for? (check all):", options: [
+              "Writing", "Summarizing information", "Brainstorming ideas", "Research", "Coding", "Translation", "Personal learning", "I do not use AI language models"
+            ]},
+            { type: "text", id: "ai_use_other", label: "Other AI uses (if any):", placeholder: "Specify other uses..." },
+            { type: "range", id: "ai_encounter", label: "How often do you encounter AI-generated text?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "ai_capable", label: "How capable is AI of producing high-quality writing?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "ai_concern", label: "How concerned are you about ethical use of AI text?", min: 1, max: 7, value: 4, required: true }
+          ]
+        },
+        {
+          title: "Final Question",
+          instructions: "One last question about the excerpt.",
+          fields: [
+            { type: "select", id: "read_before", label: "Have you read this text before?", options: ["", "Yes", "No", "Unsure"], required: true }
+          ]
+        },
+        {
+          title: "Thank you!",
+          instructions: "here is the conclusion",
+          fields: [],
+          customContent: true,
+          content: `
+            <button type="button" id="copyBtn" class="btn btn-copy mt-2">Copy Conclusion Text</button>
+          `
+        }
+      ];
+
+      // Field generation functions
+      const createField = (field) => {
+        const div = document.createElement('div');
+        div.className = 'mb-3';
+        
+        switch(field.type) {
+          case 'text':
+          case 'number':
+            div.innerHTML = `
+              <label for="${field.id}" class="form-label">${field.label}</label>
+              <input type="${field.type}" id="${field.id}" name="${field.id}" class="form-control" 
+                     ${field.placeholder ? `placeholder="${field.placeholder}"` : ''}
+                     ${field.min ? `min="${field.min}"` : ''}
+                     ${field.max ? `max="${field.max}"` : ''}
+                     ${field.required ? 'required' : ''} />
+              <div class="invalid-feedback">Please ${field.type === 'number' ? 'enter a valid number' : 'fill in this field'}.</div>
+            `;
+            break;
+            
+          case 'select':
+            const options = field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+            div.innerHTML = `
+              <label for="${field.id}" class="form-label">${field.label}</label>
+              <select id="${field.id}" name="${field.id}" class="form-select" ${field.required ? 'required' : ''}>
+                ${options}
+              </select>
+              <div class="invalid-feedback">Please select an option.</div>
+            `;
+            break;
+            
+          case 'range':
+            div.innerHTML = `
+              <label for="${field.id}" class="form-label">${field.label} <span class="form-range-value" id="${field.id}-value">${field.value}</span></label>
+              <input type="range" id="${field.id}" name="${field.id}" class="form-range" 
+                     min="${field.min}" max="${field.max}" value="${field.value}" ${field.required ? 'required' : ''}
+                     oninput="document.getElementById('${field.id}-value').innerText = this.value" />
+              <div class="likert-labels">
+                <span>1 (Not at all)</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4 (Neutral)</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7 (Very much)</span>
+              </div>
+              <div class="invalid-feedback">Please adjust the slider.</div>
+            `;
+            break;
+            
+          case 'textarea':
+            div.innerHTML = `
+              <label for="${field.id}" class="form-label">${field.label}</label>
+              <textarea id="${field.id}" name="${field.id}" class="form-control" ${field.required ? 'required' : ''} ${field.placeholder ? `placeholder="${field.placeholder}"` : ''}></textarea>
+              <div class="invalid-feedback">Please provide a response.</div>
+            `;
+            break;
+            
+          case 'checkbox-group':
+            const checkboxes = field.options.map((opt, index) => `
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="${field.id}" value="${opt}" id="${field.id}_${index}" />
+                <label class="form-check-label" for="${field.id}_${index}">${opt}</label>
+              </div>
+            `).join('');
+            div.innerHTML = `
+              <label class="form-label">${field.label}</label>
+              <br />
+              ${checkboxes}
+              <div class="invalid-feedback">Please select at least one option.</div>
+            `;
+            break;
+        }
+        
+        return div;
+      };
+
+      // Generate pages
+      const generatePages = () => {
+        const container = document.getElementById('page-container');
+        
+        pageConfig.forEach((page, index) => {
+          const pageDiv = document.createElement('div');
+          pageDiv.className = 'page';
+          pageDiv.setAttribute('data-page', index + 1);
+          
+          const title = document.createElement('h2');
+          title.textContent = page.title;
+          if (page.titleId) title.id = page.titleId;
+          pageDiv.appendChild(title);
+          
+          if (page.instructions) {
+            const instructions = document.createElement('div');
+            instructions.className = 'instructions';
+            instructions.textContent = page.instructions;
+            instructions.id = index + 1 === pageConfig.length ? 'conclusion-text' : '';
+            pageDiv.appendChild(instructions);
+          }
+          
+          if (page.customContent) {
+            pageDiv.innerHTML += page.content;
+          } else if (page.fields) {
+            page.fields.forEach(field => {
+              pageDiv.appendChild(createField(field));
+            });
+          }
+          
+          container.appendChild(pageDiv);
+        });
+      };
+
+      // Initialize
+      generatePages();
+
+      // Get survey number from URL query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const surveyNum = urlParams.get('survey') || '1';
+
+      // Configure excerpt and authorship section based on survey number
+      const excerptHuman = document.getElementById('excerpt-human');
+      const excerptAI = document.getElementById('excerpt-ai');
+      const excerptAI2 = document.getElementById('excerpt-ai2');
+      const excerptHuman2 = document.getElementById('excerpt-human2');
+      const authorshipTitle = document.getElementById('authorship-title');
+      const perceivedSource = document.getElementById('perceived-source');
+      const authorshipInfo = document.getElementById('authorship-info');
+
+      // Reset display to ensure no conflicts
+      excerptHuman.style.display = 'none';
+      excerptAI.style.display = 'none';
+      excerptAI2.style.display = 'none';
+      excerptHuman2.style.display = 'none';
+      perceivedSource.style.display = 'none';
+      authorshipInfo.style.display = 'none';
+
+      if (surveyNum === '1') {
+        excerptHuman.style.display = 'block';
+        authorshipInfo.style.display = 'block';
+        authorshipTitle.innerText = 'Effect of Authorship Information';
+        pageConfig[4].instructions = 'Please answer the following questions about the source of the text.';
+      } else if (surveyNum === '2') {
+        excerptAI.style.display = 'block';
+        authorshipInfo.style.display = 'block';
+        authorshipTitle.innerText = 'Effect of Authorship Information';
+        pageConfig[4].instructions = 'Please answer the following questions about the source of the text.';
+      } else if (surveyNum === '3') {
+        excerptAI2.style.display = 'block';
+        perceivedSource.style.display = 'block';
+        authorshipTitle.innerText = 'Perceived Source';
+        pageConfig[4].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
+      } else if (surveyNum === '4') {
+        excerptHuman2.style.display = 'block';
+        perceivedSource.style.display = 'block';
+        authorshipTitle.innerText = 'Perceived Source';
+        pageConfig[4].instructions = 'Based on the style and content of the excerpt, please provide your best guess about its origin and answer the related questions.';
+      }
+
+      // Toggle other_emotion input based on checkbox selection
+      document.addEventListener('change', (e) => {
+        if (e.target.matches('input[name="ai_emotions"]')) {
+          const otherCheckbox = document.getElementById('ai_emotions_9');
+          const otherContainer = document.getElementById('other_emotion_container');
+          const otherInput = document.getElementById('other_emotion');
+          otherContainer.style.display = otherCheckbox.checked ? 'block' : 'none';
+          if (!otherCheckbox.checked) otherInput.value = '';
+        }
+      });
+
+      // Page navigation
+      let currentPage = 1;
+      const totalPages = pageConfig.length;
+      
+      const showPage = n => {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const currentPageElement = document.querySelector(`.page[data-page="${n}"]`);
+        currentPageElement.classList.add('active');
+        const prevBtn = document.getElementById('prevBtn');
+        prevBtn.disabled = (n === 1);
+        prevBtn.className = n === 1 ? 'btn btn-secondary' : 'btn btn-primary';
+        document.getElementById('nextBtn').style.display = (n === totalPages ? 'none' : 'inline-block');
+        document.getElementById('submitBtn').style.display = (n === totalPages ? 'inline-block' : 'none');
+        
+        // Update progress bar
+        const progress = ((n / totalPages) * 100).toFixed(0);
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${progress}%`;
+        progressBar.setAttribute('aria-valuenow', progress);
+        
+        // Update instructions dynamically
+        const instructions = currentPageElement.querySelector('.instructions');
+        if (instructions) {
+          instructions.textContent = pageConfig[n-1].instructions || '';
+        }
+      };
+
+      // Validate current page
+      const validatePage = (pageNum, showErrors = false) => {
+        const page = document.querySelector(`.page[data-page="${pageNum}"]`);
+        // Skip validation for page 1 (Welcome), page 4 (Effect of Authorship Information/Perceived Source), and last page (Thank you!)
+        if (pageNum === 1 || pageNum === 4 || pageNum === totalPages) return true;
+        
+        const requiredInputs = page.querySelectorAll('input[required], select[required], textarea[required]');
+        let allValid = true;
+        
+        if (showErrors) {
+          // Reset validation states
+          page.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        }
+        
+        requiredInputs.forEach(input => {
+          let isValid = true;
+          if (input.type === 'number') {
+            const value = parseInt(input.value);
+            const min = parseInt(input.min);
+            if (!input.value || isNaN(value) || value < min) {
+              isValid = false;
+            }
+          } else if (input.tagName === 'SELECT') {
+            if (!input.value) {
+              isValid = false;
+            }
+          } else if (!input.value || input.value.trim() === '') {
+            isValid = false;
+          }
+          
+          if (!isValid && showErrors) {
+            input.parentElement.classList.add('is-invalid');
+            allValid = false;
+          }
+        });
+        
+        // Special validation for ai_uses (checkbox group)
+        if (page.querySelector('input[name="ai_uses"]')) {
+          const checkboxes = page.querySelectorAll('input[name="ai_uses"]:checked');
+          const checkboxContainer = page.querySelector('input[name="ai_uses"]').parentElement;
+          
+          if (checkboxes.length === 0 && showErrors) {
+            checkboxContainer.classList.add('is-invalid');
+            allValid = false;
+          } else if (showErrors) {
+            checkboxContainer.classList.remove('is-invalid');
+          }
+        }
+        
+        return allValid;
+      };
+
+      document.getElementById('nextBtn').onclick = () => {
+        // Validate current page only when Next is clicked
+        if (validatePage(currentPage, true)) {
+          currentPage++;
+          showPage(currentPage);
+        }
+      };
+      
+      document.getElementById('prevBtn').onclick = () => {
+        currentPage--;
+        showPage(currentPage);
+      };
+
+      // Copy button functionality
+      document.addEventListener('click', (e) => {
+        if (e.target.id === 'copyBtn') {
+          const conclusionText = document.getElementById('conclusion-text').textContent;
+          navigator.clipboard.writeText(conclusionText).then(() => {
+            alert('Conclusion text copied to clipboard!');
+          }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy text. Please try again.');
+          });
+        }
+      });
+
+      // Timer
+      let startTime = Date.now();
+      setInterval(() => {
+        const sec = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById('timer').innerText = `Time elapsed: ${sec}s`;
+      }, 1000);
+
+      // Form submission
+      function cleanObject(obj) {
+        if (Array.isArray(obj)) return obj;
+        if (typeof obj === 'object') {
+          for (const k in obj) if (obj[k] === undefined) delete obj[k];
+        }
+        return obj;
+      }
+      
+      function formToObj(frm) {
+        const data = {};
+        new FormData(frm).forEach((v, k) => {
+          data[k] = data[k] ? [].concat(data[k], v) : v;
+        });
+        return cleanObject(data);
+      }
+      
+      document.getElementById('survey-form').onsubmit = e => {
+        e.preventDefault();
+        if (validatePage(currentPage, true)) {
+          const payload = formToObj(e.target);
+          payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+          
+          console.log('Form submitted:', payload);
+          alert('Thanks! Responses submitted.');
+        }
+      };
+
+      // Initial setup
+      showPage(currentPage);
+    </script>
+  </body>
+</html>
