@@ -1037,6 +1037,11 @@
       
       document.getElementById('survey-form').onsubmit = async e => {
         e.preventDefault();
+        const submitBtn = document.querySelector('#survey-form button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting...'; // Show loading state
+        }
         if (validatePage(currentPage, true)) {
           if (pageStartTime && currentPage <= pageTimes.length) {
             pageTimes[currentPage - 1] = ((Date.now() - pageStartTime) / 1000).toFixed(1);
@@ -1062,10 +1067,24 @@
               alert('Thanks! Responses submitted to GitHub.');
             } else {
               alert('Error submitting responses.');
+              // Re-enable the button if there was an error
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+              }
             }
           } catch (err) {
             console.error('Submission failed:', err);
             alert('Error submitting responses.');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Submit';
+            }
+          }
+        } else {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
           }
         }
       };
