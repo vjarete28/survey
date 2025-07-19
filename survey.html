@@ -1065,6 +1065,8 @@
             });
             if (response.ok) {
               alert('Thanks! Responses submitted to GitHub.');
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Submitted';
             } else {
               alert('Error submitting responses.');
               // Re-enable the button if there was an error
