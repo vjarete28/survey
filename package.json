@@ -1,0 +1,34 @@
+{
+  "name": "survey",
+  "version": "1.0.0",
+  "description": "A survey",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjarete28/survey.git"
+  },
+  "keywords": [
+    "survey",
+    "html",
+    "html+js+css",
+    "bootstrap"
+  ],
+  "author": "VJArete28",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vjarete28/survey/issues"
+  },
+  "homepage": "https://github.com/vjarete28/survey#readme",
+  "devDependencies": {
+    "git-scripts": "^0.6.4",
+    "surge": "^0.24.6"
+  },
+  "git": {
+    "scripts": {
+      "pre-push": "surge --project ./ --domain survey.surge.sh"
+    }
+  }
+}
