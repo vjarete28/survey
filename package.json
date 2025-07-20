@@ -28,7 +28,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "surge --project ./ --domain survey.surge.sh"
+      "pre-push": "npx surge --project ./ --domain survey-vj.surge.sh"
     }
   }
 }
