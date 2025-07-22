@@ -247,18 +247,18 @@
           title: "Welcome!",
           customContent: true,
           content: `
-            <p>Ever read something and thought, &ldquo;Wait&hellip; why can't I stop reading?&rdquo; That&rsquo;s exactly the kind of magic we&rsquo;re studying.</p>
+            <p>Ever read something and thought, “Wait… why can't I stop reading?” That’s exactly the kind of magic we’re studying.</p>
 
-<p>We&rsquo;re running a quick survey to explore how people engage with different types of writing. You&rsquo;ll read a short literary excerpt&mdash;something intriguing, thought-provoking, maybe even goosebump-worthy&mdash;and then share your thoughts.</p>
+<p>We’re running a quick survey to explore how people engage with different types of writing. You’ll read a short literary excerpt—something intriguing, thought-provoking, maybe even goosebump-worthy—and then share your thoughts.</p>
 
-<p>Here&rsquo;s the fun part:</p>
+<p>Here’s the fun part:</p>
 
 <ul>
     <li>The excerpt is actually <strong>really</strong> interesting (no snoozefest, we promise). </li>
     <li>Your honest impressions help us understand how readers connect with stories. </li>
-    <li>It&rsquo;s totally anonymous&mdash;no names, just thoughts. Surveyswap karma points at the end.</li>
+    <li>It’s totally anonymous—no names, just thoughts. Surveyswap karma points at the end.</li>
 </ul>
-<p>So if you&rsquo;re curious, thoughtful, and have a few minutes to spare, jump in. Your brain + our story = research magic. Thanks for being awesome! </p> `
+<p>So if you’re curious, thoughtful, and have a few minutes to spare, jump in. Your brain + our story = research magic. Thanks for being awesome! </p> `
         },
         {
           title: "Demographics",
@@ -1019,61 +1019,86 @@ Here is something I found interesting (will stay on this page after submitting):
         return cleanObject(data);
       }
       
-      document.getElementById('survey-form').onsubmit = async e => {
-        e.preventDefault();
+      async function submitForm(form, isPartial = false) {
         const submitBtn = document.querySelector('#survey-form button[type="submit"]');
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = 'Submitting...'; // Show loading state
+          submitBtn.textContent = isPartial ? 'Saving...' : 'Submitting...';
         }
-        if (validatePage(currentPage, true)) {
-          if (pageStartTime && currentPage <= pageTimes.length) {
-            pageTimes[currentPage - 1] = ((Date.now() - pageStartTime) / 1000).toFixed(1);
-          }
-          if (currentPage === 3 && readingPageStartTime) {
-            readingPageTime = ((Date.now() - readingPageStartTime) / 1000).toFixed(1);
-          }
-          const payload = formToObj(e.target);
-          payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
-          payload.readingPageTime = readingPageTime || "0";
-          payload.pageTimes = pageTimes;
-          payload.deviceType = getDeviceType();
-          payload.browserType = getBrowserType();
-          payload.navigationEvents = navigationEvents;
-          payload.status = "complete";
-          try {
-            const response = await fetch('https://experimentsurvey.neeljaiswal23.workers.dev/api', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            if (response.ok) {
-              alert('Thanks! Responses submitted.');
-              submitBtn.disabled = true;
-              submitBtn.textContent = 'Submitted';
-            } else {
+        
+        if (pageStartTime && currentPage <= pageTimes.length) {
+          pageTimes[currentPage - 1] = ((Date.now() - pageStartTime) / 1000).toFixed(1);
+        }
+        if (currentPage === 3 && readingPageStartTime) {
+          readingPageTime = ((Date.now() - readingPageStartTime) / 1000).toFixed(1);
+        }
+        
+        const payload = formToObj(form);
+        payload.totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+        payload.readingPageTime = readingPageTime || "0";
+        payload.pageTimes = pageTimes;
+        payload.deviceType = getDeviceType();
+        payload.browserType = getBrowserType();
+        payload.navigationEvents = navigationEvents;
+        payload.status = isPartial ? "partial" : "complete";
+        if (isPartial) {
+          payload.partialSurvey = "true";
+        }
+        
+        try {
+          const response = await fetch('https://experimentsurvey.neeljaiswal23.workers.dev/api', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (response.ok && !isPartial) {
+            alert('Thanks! Responses submitted.');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitted';
+          } else if (!response.ok) {
+            console.error('Submission failed:', response.statusText);
+            if (!isPartial) {
               alert('Error submitting responses.');
-              // Re-enable the button if there was an error
               if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit';
               }
             }
-          } catch (err) {
-            console.error('Submission failed:', err);
+          }
+        } catch (err) {
+          console.error('Submission failed:', err);
+          if (!isPartial) {
             alert('Error submitting responses.');
             if (submitBtn) {
               submitBtn.disabled = false;
               submitBtn.textContent = 'Submit';
             }
           }
+        }
+      }
+
+      // Form submission for complete survey
+      document.getElementById('survey-form').onsubmit = async e => {
+        e.preventDefault();
+        if (validatePage(currentPage, true)) {
+          await submitForm(e.target, false);
         } else {
+          const submitBtn = document.querySelector('#survey-form button[type="submit"]');
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit';
           }
         }
       };
+
+      // Partial submission on page close
+      window.addEventListener('beforeunload', async (e) => {
+        if (currentPage < totalPages) { // Only submit if not on the final page
+          e.preventDefault();
+          e.returnValue = ''; // Trigger browser confirmation dialog
+          await submitForm(document.getElementById('survey-form'), true);
+        }
+      });
 
       // Initial setup
       showPage(currentPage);
