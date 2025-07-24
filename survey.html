@@ -159,6 +159,31 @@
         font-weight: 600;
         color: #3498db;
       }
+      /* Default empty circle thumb (before interaction) */
+      .form-range[data-touched="false"]::-webkit-slider-thumb {
+          background: transparent;
+          border: 3px solid #3498db;
+          box-shadow: none;
+      }
+      /* Filled circle thumb (after interaction) */
+      .form-range[data-touched="true"]::-webkit-slider-thumb {
+          background: #3498db;
+          border: 3px solid white;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Firefox support */
+      .form-range[data-touched="false"]::-moz-range-thumb {
+          background: transparent;
+          border: 3px solid #3498db;
+          box-shadow: none;
+      }
+
+      .form-range[data-touched="true"]::-moz-range-thumb {
+          background: #3498db;
+          border: 3px solid white;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
       .form-label {
         font-weight: 600;
         color: #2c3e50;
@@ -686,14 +711,16 @@ Here is something I found interesting (will stay on this page after submitting):
             div.innerHTML = `
               <label for="${field.id}" class="form-label">${field.label} <span class="form-range-value" id="${field.id}-value">--</span></label>
               <input type="range" id="${field.id}" name="${field.id}" class="form-range" 
-                     min="${field.min}" max="${field.max}" ${field.required ? 'required' : ''}
-                     oninput="document.getElementById('${field.id}-value').innerText = this.value" />
+                min="${field.min}" max="${field.max}" ${field.required ? 'required' : ''}
+                data-default-value="--" data-touched="false"
+                oninput="this.setAttribute('data-touched', 'true'); document.getElementById('${field.id}-value').innerText = this.value"
+                onclick="this.setAttribute('data-touched', 'true'); document.getElementById('${field.id}-value').innerText = this.value" />
               <div class="likert-labels">
-                ${field.labels 
-                  ? `<span>${field.labels["1"] || "1 (Not at all)"}</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>${field.labels["5"] || field.labels["7"] || "7 (Very much)"}</span>` 
-                  : '<span>1 (Not at all)</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>7 (Very much)</span>'}
+                  ${field.labels 
+                      ? `<span>${field.labels["1"] || "1 (Not at all)"}</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>${field.labels["5"] || field.labels["7"] || "7 (Very much)"}</span>` 
+                      : '<span>1 (Not at all)</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>7 (Very much)</span>'}
               </div>
-              <div class="invalid-feedback">Please adjust the slider.</div>
+              <div class="invalid-feedback">Please move the slider to select a value.</div>
             `;
             break;
             
@@ -754,8 +781,15 @@ Here is something I found interesting (will stay on this page after submitting):
               pageDiv.appendChild(createField(field));
             });
           }
-          
+
           container.appendChild(pageDiv);
+          // Initialize range inputs display
+          document.querySelectorAll('input[type="range"]').forEach(input => {
+              const valueSpan = document.getElementById(`${input.id}-value`);
+              if (valueSpan) {
+                  valueSpan.innerText = '--'; // Ensure initial display is "--"
+              }
+          });
         });
       };
 
@@ -893,27 +927,26 @@ Here is something I found interesting (will stay on this page after submitting):
         requiredInputs.forEach(input => {
           let isValid = true;
           if (input.type === 'number') {
-            const value = parseInt(input.value);
-            const min = parseInt(input.min);
-            if (!input.value || isNaN(value) || value < min) {
-              isValid = false;
-            }
+              const value = parseInt(input.value);
+              const min = parseInt(input.min);
+              if (!input.value || isNaN(value) || value < min) {
+                  isValid = false;
+              }
           } else if (input.type === 'range') {
-            const value = input.value;
-            if (value === undefined || value === '') {
-              isValid = false;
-            }
+              if (input.getAttribute('data-touched') === 'false') {
+                  isValid = false;
+              }
           } else if (input.tagName === 'SELECT') {
-            if (!input.value) {
-              isValid = false;
-            }
+              if (!input.value) {
+                  isValid = false;
+              }
           } else if (!input.value || input.value.trim() === '') {
-            isValid = false;
+              isValid = false;
           }
           
           if (!isValid && showErrors) {
-            input.parentElement.classList.add('is-invalid');
-            allValid = false;
+              input.parentElement.classList.add('is-invalid');
+              allValid = false;
           }
         });
         
@@ -921,15 +954,15 @@ Here is something I found interesting (will stay on this page after submitting):
         const checkboxGroups = page.querySelectorAll('input[type="checkbox"][name]');
         const uniqueNames = new Set(Array.from(checkboxGroups).map(input => input.name));
         uniqueNames.forEach(name => {
-          const checkboxes = page.querySelectorAll(`input[name="${name}"]:checked`);
-          const container = page.querySelector(`input[name="${name}"]`).parentElement;
-          
-          if (checkboxes.length === 0 && showErrors) {
-            container.classList.add('is-invalid');
-            allValid = false;
-          } else if (showErrors) {
-            container.classList.remove('is-invalid');
-          }
+            const checkboxes = page.querySelectorAll(`input[name="${name}"]:checked`);
+            const container = page.querySelector(`input[name="${name}"]`).parentElement;
+            
+            if (checkboxes.length === 0 && showErrors) {
+                container.classList.add('is-invalid');
+                allValid = false;
+            } else if (showErrors) {
+                container.classList.remove('is-invalid');
+            }
         });
         
         return allValid;
@@ -979,36 +1012,41 @@ Here is something I found interesting (will stay on this page after submitting):
       }
       
       function formToObj(frm) {
-        const data = {};
-        const formData = new FormData(frm);
-        
-        const checkboxGroups = new Set(
-          Array.from(frm.querySelectorAll('input[type="checkbox"]')).map(input => input.name)
-        );
-        
-        checkboxGroups.forEach(name => {
-          data[name] = [];
-        });
-        
-        formData.forEach((v, k) => {
-          if (checkboxGroups.has(k)) {
-            data[k].push(v);
-          } else {
-            data[k] = data[k] ? [].concat(data[k], v) : v;
-          }
-        });
+          const data = {};
+          const formData = new FormData(frm);
+          
+          const checkboxGroups = new Set(
+              Array.from(frm.querySelectorAll('input[type="checkbox"]')).map(input => input.name)
+          );
+          
+          checkboxGroups.forEach(name => {
+              data[name] = [];
+          });
+          
+          formData.forEach((v, k) => {
+              if (checkboxGroups.has(k)) {
+                  data[k].push(v);
+              } else {
+                  data[k] = data[k] ? [].concat(data[k], v) : v;
+              }
+          });
 
-        // Add survey number, timing, and device info to the payload
-        data.surveyNum = surveyNum;
-        data.readingPageTime = readingPageTime || "0";
-        data.pageTimes = pageTimes;
-        data.deviceType = getDeviceType();
-        data.browserType = getBrowserType();
-        data.navigationEvents = navigationEvents;
-              
-        return cleanObject(data);
+          // Add data-touched status for range inputs
+          frm.querySelectorAll('input[type="range"]').forEach(input => {
+              data[`${input.name}_touched`] = input.getAttribute('data-touched') === 'true';
+          });
+
+          // Add survey number, timing, and device info to the payload
+          data.surveyNum = surveyNum;
+          data.readingPageTime = readingPageTime || "0";
+          data.pageTimes = pageTimes;
+          data.deviceType = getDeviceType();
+          data.browserType = getBrowserType();
+          data.navigationEvents = navigationEvents;
+                
+          return cleanObject(data);
       }
-      
+
       async function submitForm(form, isPartial = false) {
         const submitBtn = document.querySelector('#survey-form button[type="submit"]');
         if (submitBtn) {
