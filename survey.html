@@ -24,8 +24,8 @@
         padding: 2rem;
         max-width: 900px;
         position: sticky;
-        top: 0; /* Stick to the top of the viewport */
-        z-index: 10; /* Ensure it stays above other content */
+        top: 0;
+        z-index: 10;
       }
       h1 {
         color: #2c3e50;
@@ -267,10 +267,10 @@
             { type: "number", id: "age", label: "Age", placeholder: "Enter your age", min: 1, required: true },
             { type: "select", id: "gender", label: "Gender", options: ["", "Female", "Male", "Non-binary", "Prefer not to say", "Other"], required: true },
             { type: "select", id: "education", label: "Highest level of education completed", options: ["", "No formal education", "In Elementary School", "Elementary School", "Middle School", "High School", "Some College", "Associates", "Bachelors", "Masters", "PhD/MD", "Postdoctoral"], required: true },
-            { type: "select", id: "inschool", label: "Are you currently in school?", options: ["", "Yes", "No"], required:true },
+            { type: "select", id: "inschool", label: "Are you currently in school?", options: ["", "Yes", "No"], required: true },
             { type: "text", id: "field", label: "Academic or career field", placeholder: "e.g., Engineering", required: true },
             { type: "textarea", id: "language", label: "Add your languages (indicate whether you are comfortable speaking, reading, listening, writing for each)", placeholder: "e.g., English (speaking, reading, listening, writing), Spanish (reading, listening)", required: true },
-            { type: "select", id: "country", label: "Country", options: ["", "United States", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", " Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"], required: true },
+            { type: "select", id: "country", label: "Country", options: ["", "United States", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timothy", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", " Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"], required: true },
             { type: "select", id: "reading_freq", label: "How often do you read?", options: ["", "Daily", "Weekly", "Monthly", "Rarely", "Never"], required: true }
           ]
         },
@@ -297,7 +297,6 @@
             <div class="excerpt" id="excerpt-ai" style="display: none;">
                   <h3>The Story of the Forgotten Chapel</h3>
                     <p>Generated by an AI</p>
-
                     <p>"You don’t know my father at all, do you?" asked the girl. "You’ve only heard of him through letters."</p>
                     <p>"Only that he’s a man of great repute," Mr. Turner said carefully, unsure of what else to add. "He’s a scholar, I believe?"</p>
                     <p>"Not exactly," she replied, her lips curling into a slight smile. "He’s more interested in things that are, forgotten. But I suppose that might be the same thing."</p>
@@ -316,7 +315,6 @@
             </div>
             <div class="excerpt" id="excerpt-ai2" style="display: none;">
               <h3>The Story of the Forgotten Chapel</h3>
-
                     <p>"You don’t know my father at all, do you?" asked the girl. "You’ve only heard of him through letters."</p>
                     <p>"Only that he’s a man of great repute," Mr. Turner said carefully, unsure of what else to add. "He’s a scholar, I believe?"</p>
                     <p>"Not exactly," she replied, her lips curling into a slight smile. "He’s more interested in things that are, forgotten. But I suppose that might be the same thing."</p>
@@ -334,19 +332,17 @@
             </div>
             <div class="excerpt" id="excerpt-human2" style="display: none;">
               <h3>The Open Window</h3>
-                    
-    <p>"Then you know practically nothing about my aunt?" pursued the self-possessed young lady…</p>
-    <p>"Only her name and address," admitted the caller. He was wondering whether Mrs. Sappleton was in the married or widowed state. An undefinable something about the room seemed to suggest masculine habitation.</p>
-    <p>"Her great tragedy happened just three years ago," said the child; "that would be since your sister's time."</p>
-    <p>"Her tragedy?" asked Framton; somehow in this restful country spot tragedies seemed out of place.</p>
-    <p>"You may wonder why we keep that window wide open on an October afternoon," said the niece, indicating a large French window that opened on to a lawn.</p>
-    <p>"It is quite warm for the time of the year," said Framton; "but has that window got anything to do with the tragedy?"</p>
-    <p>"Out through that window, three years ago to a day, her husband and her two young brothers went off for their day's shooting. They never came back. In crossing the moor to their favourite snipe-shooting ground they were all three engulfed in a treacherous piece of bog. It had been that dreadful wet summer, you know, and places that were safe in other years gave way suddenly without warning. Their bodies were never recovered. That was the dreadful part of it." …</p>
-    <p>She broke off with a little shudder. It was a relief to Framton when the aunt bustled into the room with a whirl of apologies for being late in making her appearance.</p>
-    <p>"I hope Vera has been amusing you?" she said.</p>
-    <p>"She has been very interesting," said Framton…</p>
-    <p>"I hope you don't mind the open window," said Mrs. Sappleton briskly; "my husband and brothers will be home directly from shooting, and they always come in this way. They've been out for snipe in the marshes today, so they'll make a fine mess over my poor carpets. So like you menfolk, isn't it?”…</p>
-
+                    <p>"Then you know practically nothing about my aunt?" pursued the self-possessed young lady…</p>
+                    <p>"Only her name and address," admitted the caller. He was wondering whether Mrs. Sappleton was in the married or widowed state. An undefinable something about the room seemed to suggest masculine habitation.</p>
+                    <p>"Her great tragedy happened just three years ago," said the child; "that would be since your sister's time."</p>
+                    <p>"Her tragedy?" asked Framton; somehow in this restful country spot tragedies seemed out of place.</p>
+                    <p>"You may wonder why we keep that window wide open on an October afternoon," said the niece, indicating a large French window that opened on to a lawn.</p>
+                    <p>"It is quite warm for the time of the year," said Framton; "but has that window got anything to do with the tragedy?"</p>
+                    <p>"Out through that window, three years ago to a day, her husband and her two young brothers went off for their day's shooting. They never came back. In crossing the moor to their favourite snipe-shooting ground they were all three engulfed in a treacherous piece of bog. It had been that dreadful wet summer, you know, and places that were safe in other years gave way suddenly without warning. Their bodies were never recovered. That was the dreadful part of it." …</p>
+                    <p>She broke off with a little shudder. It was a relief to Framton when the aunt bustled into the room with a whirl of apologies for being late in making her appearance.</p>
+                    <p>"I hope Vera has been amusing you?" she said.</p>
+                    <p>"She has been very interesting," said Framton…</p>
+                    <p>"I hope you don't mind the open window," said Mrs. Sappleton briskly; "my husband and brothers will be home directly from shooting, and they always come in this way. They've been out for snipe in the marshes today, so they'll make a fine mess over my poor carpets. So like you menfolk, isn't it?”…</p>
             </div>
           `
         },
@@ -354,13 +350,13 @@
           title: "Reading Experience & Engagement",
           instructions: "Rate your experience and engagement with the text you just read.",
           fields: [
-            { type: "range", id: "auth1", label: "The writing felt generic and didn’t show a personal point of view.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "auth2", label: "The writing reflected a perspective shaped by personal experiences.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "auth3", label: "The emotional tone of the story felt authentic to the author’s perspective.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "auth4", label: "The story felt more like a collection of words than a meaningful message.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "auth5", label: "The writing conveyed a sense of emotional depth.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "emo1", label: "How did this story make you feel emotionally?", min: 1, max: 7, value: 4, labels: { "1": "Very negative", "5": "Very positive" }, required: true },
-            { type: "range", id: "emo2", label: "How activated or stimulated did you feel while reading?", min: 1, max: 7, value: 4, labels: { "1": "Very calm/bored", "5": "Very alert/intense" }, required: true },
+            { type: "range", id: "auth1", label: "The writing felt generic and didn’t show a personal point of view.", min: 1, max: 7, required: true },
+            { type: "range", id: "auth2", label: "The writing reflected a perspective shaped by personal experiences.", min: 1, max: 7, required: true },
+            { type: "range", id: "auth3", label: "The emotional tone of the story felt authentic to the author’s perspective.", min: 1, max: 7, required: true },
+            { type: "range", id: "auth4", label: "The story felt more like a collection of words than a meaningful message.", min: 1, max: 7, required: true },
+            { type: "range", id: "auth5", label: "The writing conveyed a sense of emotional depth.", min: 1, max: 7, required: true },
+            { type: "range", id: "emo1", label: "How did this story make you feel emotionally?", min: 1, max: 7, labels: { "1": "Very negative", "5": "Very positive" }, required: true },
+            { type: "range", id: "emo2", label: "How activated or stimulated did you feel while reading?", min: 1, max: 7, labels: { "1": "Very calm/bored", "5": "Very alert/intense" }, required: true },
             { type: "checkboxes", id: "emo3", label: "What emotions did you experience while reading?", options: [
                 { label: "Curiosity", value: "curiosity" },
                 { label: "Suspense", value: "suspense" },
@@ -373,24 +369,24 @@
                 { label: "None of the above", value: "none" },
                 { label: "Other", value: "other", text: true }
               ], required: true },
-            { type: "range", id: "exp1", label: "I felt a pull to keep reading…", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "exp2", label: "The events and characters felt real to me.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "exp3", label: "I felt a sense of connection to the characters.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "exp4", label: "Narrative flow was smooth.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "exp5", label: "I felt the intended mood or tone.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "exp6", label: "How likely are you to read the rest?", min: 1, max: 7, value: 4, required: true }
+            { type: "range", id: "exp1", label: "I felt a pull to keep reading…", min: 1, max: 7, required: true },
+            { type: "range", id: "exp2", label: "The events and characters felt real to me.", min: 1, max: 7, required: true },
+            { type: "range", id: "exp3", label: "I felt a sense of connection to the characters.", min: 1, max: 7, required: true },
+            { type: "range", id: "exp4", label: "Narrative flow was smooth.", min: 1, max: 7, required: true },
+            { type: "range", id: "exp5", label: "I felt the intended mood or tone.", min: 1, max: 7, required: true },
+            { type: "range", id: "exp6", label: "How likely are you to read the rest?", min: 1, max: 7, required: true }
           ]
         },
         {
           title: "Literary Quality & Appreciation",
           instructions: "Evaluate the literary quality of the text you read.",
           fields: [
-            { type: "range", id: "lit1", label: "How vivid were the images?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "lit2", label: "How well did characters' thoughts come through?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "lit3", label: "How precise were word choices?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "lit4", label: "How compelling were character interactions?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "lit5", label: "To what extent did the author's voice come through?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "lit6", label: "To what extent did the writing feel genuine?", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "lit1", label: "How vivid were the images?", min: 1, max: 7, required: true },
+            { type: "range", id: "lit2", label: "How well did characters' thoughts come through?", min: 1, max: 7, required: true },
+            { type: "range", id: "lit3", label: "How precise were word choices?", min: 1, max: 7, required: true },
+            { type: "range", id: "lit4", label: "How compelling were character interactions?", min: 1, max: 7, required: true },
+            { type: "range", id: "lit5", label: "To what extent did the author's voice come through?", min: 1, max: 7, required: true },
+            { type: "range", id: "lit6", label: "To what extent did the writing feel genuine?", min: 1, max: 7, required: true },
             { type: "textarea", id: "lit7", label: "What moment/image/feeling stuck with you most?" }
           ]
         },
@@ -412,8 +408,8 @@
                 <div class="invalid-feedback">Please select an option.</div>
               </div>
               <div class="mb-3">
-                <label for="influence_engagement" class="form-label">To what extent did this information influence your engagement with the text? <span class="form-range-value" id="influence_engagement-value">4</span></label>
-                <input type="range" id="influence_engagement" name="influence_engagement" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('influence_engagement-value').innerText = this.value" />
+                <label for="influence_engagement" class="form-label">To what extent did this information influence your engagement with the text? <span class="form-range-value" id="influence_engagement-value">--</span></label>
+                <input type="range" id="influence_engagement" name="influence_engagement" class="form-range" min="1" max="7" oninput="document.getElementById('influence_engagement-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -426,8 +422,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="influence_quality" class="form-label">To what extent did this information influence your perception of the text’s quality? <span class="form-range-value" id="influence_quality-value">4</span></label>
-                <input type="range" id="influence_quality" name="influence_quality" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('influence_quality-value').innerText = this.value" />
+                <label for="influence_quality" class="form-label">To what extent did this information influence your perception of the text’s quality? <span class="form-range-value" id="influence_quality-value">--</span></label>
+                <input type="range" id="influence_quality" name="influence_quality" class="form-range" min="1" max="7" oninput="document.getElementById('influence_quality-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -444,8 +440,8 @@
                 <textarea id="influence_emotion" name="influence_emotion" class="form-control"></textarea>
               </div>
               <div class="mb-3">
-                <label for="confidence_evaluation" class="form-label">How confident do you feel in your evaluation of the text given the information you received about its source? <span class="form-range-value" id="confidence_evaluation-value">4</span></label>
-                <input type="range" id="confidence_evaluation" name="confidence_evaluation" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('confidence_evaluation-value').innerText = this.value" />
+                <label for="confidence_evaluation" class="form-label">How confident do you feel in your evaluation of the text given the information you received about its source? <span class="form-range-value" id="confidence_evaluation-value">--</span></label>
+                <input type="range" id="confidence_evaluation" name="confidence_evaluation" class="form-range" min="1" max="7" oninput="document.getElementById('confidence_evaluation-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -471,8 +467,8 @@
                 <div class="invalid-feedback">Please select an option.</div>
               </div>
               <div class="mb-3">
-                <label for="ai_likelihood" class="form-label">To what extent do you believe this excerpt was written by an Artificial Intelligence (AI)? <span id="ai_likelihood-value">50%</span></label>
-                <input type="range" id="ai_likelihood" name="ai_likelihood" class="form-range" min="0" max="100" value="50" oninput="document.getElementById('ai_likelihood-value').innerText = this.value + '%'" />
+                <label for="ai_likelihood" class="form-label">To what extent do you believe this excerpt was written by an Artificial Intelligence (AI)? <span id="ai_likelihood-value">--</span></label>
+                <input type="range" id="ai_likelihood" name="ai_likelihood" class="form-range" min="0" max="100" oninput="document.getElementById('ai_likelihood-value').innerText = this.value + '%'" />
                 <div class="likert-labels">
                   <span>0% (Definitely not AI)</span>
                   <span>25%</span>
@@ -483,8 +479,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="confidence_origin" class="form-label">How confident are you in your choice about the author's origin (human/AI)? <span class="form-range-value" id="confidence_origin-value">4</span></label>
-                <input type="range" id="confidence_origin" name="confidence_origin" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('confidence_origin-value').innerText = this.value" />
+                <label for="confidence_origin" class="form-label">How confident are you in your choice about the author's origin (human/AI)? <span class="form-range-value" id="confidence_origin-value">--</span></label>
+                <input type="range" id="confidence_origin" name="confidence_origin" class="form-range" min="1" max="7" oninput="document.getElementById('confidence_origin-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -518,8 +514,8 @@
                 <div class="invalid-feedback">Please provide an explanation.</div>
               </div>
               <div class="mb-3">
-                <label for="distinct_expression" class="form-label">To what extent did this text feel like it was written by an individual with a distinct, personal way of expressing themselves? <span class="form-range-value" id="distinct_expression-value">4</span></label>
-                <input type="range" id="distinct_expression" name="distinct_expression" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('distinct_expression-value').innerText = this.value" />
+                <label for="distinct_expression" class="form-label">To what extent did this text feel like it was written by an individual with a distinct, personal way of expressing themselves? <span class="form-range-value" id="distinct_expression-value">--</span></label>
+                <input type="range" id="distinct_expression" name="distinct_expression" class="form-range" min="1" max="7" oninput="document.getElementById('distinct_expression-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -532,8 +528,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="originality_influence" class="form-label">To what extent did the text's (lack of) originality/creativity influence your guess? <span class="form-range-value" id="originality_influence-value">4</span></label>
-                <input type="range" id="originality_influence" name="originality_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('originality_influence-value').innerText = this.value" />
+                <label for="originality_influence" class="form-label">To what extent did the text's (lack of) originality/creativity influence your guess? <span class="form-range-value" id="originality_influence-value">--</span></label>
+                <input type="range" id="originality_influence" name="originality_influence" class="form-range" min="1" max="7" oninput="document.getElementById('originality_influence-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -546,8 +542,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="emotion_nuance_influence" class="form-label">To what extent did the text's (lack of) specific human emotion/nuance influence your guess? <span class="form-range-value" id="emotion_nuance_influence-value">4</span></label>
-                <input type="range" id="emotion_nuance_influence" name="emotion_nuance_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('emotion_nuance_influence-value').innerText = this.value" />
+                <label for="emotion_nuance_influence" class="form-label">To what extent did the text's (lack of) specific human emotion/nuance influence your guess? <span class="form-range-value" id="emotion_nuance_influence-value">--</span></label>
+                <input type="range" id="emotion_nuance_influence" name="emotion_nuance_influence" class="form-range" min="1" max="7" oninput="document.getElementById('emotion_nuance_influence-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -560,8 +556,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="structured_language_influence" class="form-label">To what extent did the text's (overly) structured/formulaic language influence your guess? <span class="form-range-value" id="structured_language_influence-value">4</span></label>
-                <input type="range" id="structured_language_influence" name="structured_language_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('structured_language_influence-value').innerText = this.value" />
+                <label for="structured_language_influence" class="form-label">To what extent did the text's (overly) structured/formulaic language influence your guess? <span class="form-range-value" id="structured_language_influence-value">--</span></label>
+                <input type="range" id="structured_language_influence" name="structured_language_influence" class="form-range" min="1" max="7" oninput="document.getElementById('structured_language_influence-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -574,8 +570,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="word_choice_influence" class="form-label">To what extent did the text's (unusual/too perfect) word choice or grammar influence your guess? <span class="form-range-value" id="word_choice_influence-value">4</span></label>
-                <input type="range" id="word_choice_influence" name="word_choice_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('word_choice_influence-value').innerText = this.value" />
+                <label for="word_choice_influence" class="form-label">To what extent did the text's (unusual/too perfect) word choice or grammar influence your guess? <span class="form-range-value" id="word_choice_influence-value">--</span></label>
+                <input type="range" id="word_choice_influence" name="word_choice_influence" class="form-range" min="1" max="7" oninput="document.getElementById('word_choice_influence-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -588,8 +584,8 @@
                 <div class="invalid-feedback">Please adjust the slider.</div>
               </div>
               <div class="mb-3">
-                <label for="consistency_influence" class="form-label">To what extent did the text's consistency (or lack thereof) in tone/style influence your guess? <span class="form-range-value" id="consistency_influence-value">4</span></label>
-                <input type="range" id="consistency_influence" name="consistency_influence" class="form-range" min="1" max="7" value="4" oninput="document.getElementById('consistency_influence-value').innerText = this.value" />
+                <label for="consistency_influence" class="form-label">To what extent did the text's consistency (or lack thereof) in tone/style influence your guess? <span class="form-range-value" id="consistency_influence-value">--</span></label>
+                <input type="range" id="consistency_influence" name="consistency_influence" class="form-range" min="1" max="7" oninput="document.getElementById('consistency_influence-value').innerText = this.value" />
                 <div class="likert-labels">
                   <span>1 (Not at all)</span>
                   <span>2</span>
@@ -608,13 +604,13 @@
           title: "Artificial Intelligence",
           instructions: "Share your thoughts on AI-generated text.",
           fields: [
-            { type: "range", id: "trust1", label: "How much do you trust AI-generated text?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust2", label: "Do you believe AI can express empathy?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust3", label: "Do you feel a personal connection to AI text?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust4", label: "How comfortable are you reading AI content?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust5", label: "Can AI produce truly original writing?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust6", label: "AI-generated content is generally trustworthy.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "trust7", label: "I feel uneasy when I can’t tell if something was written by AI.", min: 1, max: 7, value: 4, required: true }
+            { type: "range", id: "trust1", label: "How much do you trust AI-generated text?", min: 1, max: 7, required: true },
+            { type: "range", id: "trust2", label: "Do you believe AI can express empathy?", min: 1, max: 7, required: true },
+            { type: "range", id: "trust3", label: "Do you feel a personal connection to AI text?", min: 1, max: 7, required: true },
+            { type: "range", id: "trust4", label: "How comfortable are you reading AI content?", min: 1, max: 7, required: true },
+            { type: "range", id: "trust5", label: "Can AI produce truly original writing?", min: 1, max: 7, required: true },
+            { type: "range", id: "trust6", label: "AI-generated content is generally trustworthy.", min: 1, max: 7, required: true },
+            { type: "range", id: "trust7", label: "I feel uneasy when I can’t tell if something was written by AI.", min: 1, max: 7, required: true }
           ]
         },
         {
@@ -626,21 +622,21 @@
                 "Writing", "Summarizing information", "Brainstorming ideas", "Research", "Coding", "Translation", "Personal learning", "I do not use AI language models"
               ], required: true },
             { type: "text", id: "ai_use_other", label: "Other AI uses (if any):", placeholder: "Specify other uses..." },
-            { type: "range", id: "ai_encounter", label: "How often do you encounter AI-generated text?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "ai_capable", label: "How capable is AI of producing high-quality writing?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "ai_concern", label: "How concerned are you about ethical use of AI text?", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "ai_dependence", label: "I rely on AI to help me with complex tasks.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "ai_control", label: "I believe humans should always have final say over AI-generated writing.", min: 1, max: 7, value: 4, required: true }
+            { type: "range", id: "ai_encounter", label: "How often do you encounter AI-generated text?", min: 1, max: 7, required: true },
+            { type: "range", id: "ai_capable", label: "How capable is AI of producing high-quality writing?", min: 1, max: 7, required: true },
+            { type: "range", id: "ai_concern", label: "How concerned are you about ethical use of AI text?", min: 1, max: 7, required: true },
+            { type: "range", id: "ai_dependence", label: "I rely on AI to help me with complex tasks.", min: 1, max: 7, required: true },
+            { type: "range", id: "ai_control", label: "I believe humans should always have final say over AI-generated writing.", min: 1, max: 7, required: true }
           ]
         },
         {
           title: "Final Questions",
           instructions: "Please rate how much each statement describes you.",
           fields: [
-            { type: "range", id: "nfc1", label: "I prefer complex to simple problems.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "nfc2", label: "I really enjoy a task that involves coming up with new solutions to problems.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "nfc3", label: "Thinking is not my idea of fun.", min: 1, max: 7, value: 4, required: true },
-            { type: "range", id: "nfc4", label: "I only think as hard as I have to.", min: 1, max: 7, value: 4, required: true },
+            { type: "range", id: "nfc1", label: "I prefer complex to simple problems.", min: 1, max: 7, required: true },
+            { type: "range", id: "nfc2", label: "I really enjoy a task that involves coming up with new solutions to problems.", min: 1, max: 7, required: true },
+            { type: "range", id: "nfc3", label: "Thinking is not my idea of fun.", min: 1, max: 7, required: true },
+            { type: "range", id: "nfc4", label: "I only think as hard as I have to.", min: 1, max: 7, required: true },
             { type: "select", id: "read_before", label: "Have you read this text before?", options: ["", "Yes", "No", "Unsure"], required: true }
           ]
         },
@@ -688,18 +684,14 @@ Here is something I found interesting (will stay on this page after submitting):
             
           case 'range':
             div.innerHTML = `
-              <label for="${field.id}" class="form-label">${field.label} <span class="form-range-value" id="${field.id}-value">${field.value}</span></label>
+              <label for="${field.id}" class="form-label">${field.label} <span class="form-range-value" id="${field.id}-value">--</span></label>
               <input type="range" id="${field.id}" name="${field.id}" class="form-range" 
-                     min="${field.min}" max="${field.max}" value="${field.value}" ${field.required ? 'required' : ''}
+                     min="${field.min}" max="${field.max}" ${field.required ? 'required' : ''}
                      oninput="document.getElementById('${field.id}-value').innerText = this.value" />
               <div class="likert-labels">
-                <span>1 (Not at all)</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4 (Neutral)</span>
-                <span>5</span>
-                <span>6</span>
-                <span>7 (Very much)</span>
+                ${field.labels 
+                  ? `<span>${field.labels["1"] || "1 (Not at all)"}</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>${field.labels["5"] || field.labels["7"] || "7 (Very much)"}</span>` 
+                  : '<span>1 (Not at all)</span><span>2</span><span>3</span><span>4 (Neutral)</span><span>5</span><span>6</span><span>7 (Very much)</span>'}
               </div>
               <div class="invalid-feedback">Please adjust the slider.</div>
             `;
@@ -907,10 +899,8 @@ Here is something I found interesting (will stay on this page after submitting):
               isValid = false;
             }
           } else if (input.type === 'range') {
-            const value = parseInt(input.value);
-            const min = parseInt(input.min);
-            const max = parseInt(input.max);
-            if (!input.value || isNaN(value) || value < min || value > max) {
+            const value = input.value;
+            if (value === undefined || value === '') {
               isValid = false;
             }
           } else if (input.tagName === 'SELECT') {
@@ -1093,9 +1083,9 @@ Here is something I found interesting (will stay on this page after submitting):
 
       // Partial submission on page close
       window.addEventListener('beforeunload', async (e) => {
-        if (currentPage < totalPages) { // Only submit if not on the final page
+        if (currentPage < totalPages) {
           e.preventDefault();
-          e.returnValue = ''; // Trigger browser confirmation dialog
+          e.returnValue = '';
           await submitForm(document.getElementById('survey-form'), true);
         }
       });
