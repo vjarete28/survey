@@ -1083,9 +1083,27 @@
         }
       };
 
-      // Partial submission on page close
+      // Track if user has interacted with any Likert scale
+      let hasInteractedWithLikert = false;
+
+      // Function to handle range input changes
+      function handleRangeInput(input) {
+        hasInteractedWithLikert = true;
+        // Update the display value if there's a corresponding span
+        const valueSpan = document.getElementById(`${input.id}-value`);
+        if (valueSpan) {
+          valueSpan.innerText = input.value;
+        }
+      }
+
+      // Add the event listener to all range inputs
+      document.querySelectorAll('input[type="range"]').forEach(input => {
+        input.setAttribute('oninput', 'handleRangeInput(this)');
+      });
+
+      // Partial submission on page close only if user interacted with Likert scale
       window.addEventListener('beforeunload', async (e) => {
-        if (currentPage < totalPages) {
+        if (currentPage < totalPages && hasInteractedWithLikert) {
           e.preventDefault();
           e.returnValue = '';
           await submitForm(document.getElementById('survey-form'), true);
